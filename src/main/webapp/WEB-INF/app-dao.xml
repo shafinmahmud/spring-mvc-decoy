@@ -54,6 +54,7 @@
     <!-- Enable Annotation based Declarative Transaction Management -->
     <tx:annotation-driven transaction-manager="transactionManager"/>
 
+    <!-- Enable Hibernate Specific Exceptions to be translated in Spring Exceptions -->
     <bean id="exceptionTranslator"
           class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor"/>
 
