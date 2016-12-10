@@ -25,7 +25,6 @@
         <property name="maxPoolSize" value="${jdbc.maxPoolSize}"/>
         <property name="minPoolSize" value="${jdbc.minPoolSize}"/>
         <property name="maxIdleTime" value="${jdbc.maxIdleTime}"/>
-        <property name="idleConnectionTestPeriod" value="${jdbc.idleConnectionTestPeriod}"/>
     </bean>
 
     <bean id="hibernateSessionFactory"
@@ -47,10 +46,12 @@
         </property>
     </bean>
 
+    <!-- TransactionManager Bean, we are using HibernateTransactionManager -->
     <bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
         <property name="sessionFactory" ref="hibernateSessionFactory"/>
     </bean>
 
+    <!-- Enable Annotation based Declarative Transaction Management -->
     <tx:annotation-driven transaction-manager="transactionManager"/>
 
     <bean id="exceptionTranslator"

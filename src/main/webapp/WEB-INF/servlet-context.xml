@@ -23,5 +23,4 @@
     <!-- configuring view resources -->
     <mvc:resources location="resources" mapping="/resources/**"/>
 
-    <bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor"/>
 </beans>
