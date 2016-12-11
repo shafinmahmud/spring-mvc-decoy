@@ -21,6 +21,6 @@
     </bean>
 
     <!-- configuring view resources -->
-    <mvc:resources location="resources" mapping="/resources/**"/>
+    <mvc:resources mapping="/resources/**" location="resources"/>
 
 </beans>
