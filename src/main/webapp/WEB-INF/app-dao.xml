@@ -12,7 +12,7 @@
 
 
     <context:property-placeholder location="classpath:mysql.properties"/>
-    <context:component-scan base-package="shafin.web"/>
+    <context:component-scan base-package="shafin.web.dao"/>
 
     <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
           destroy-method="close">
@@ -27,15 +27,17 @@
         <property name="maxIdleTime" value="${jdbc.maxIdleTime}"/>
     </bean>
 
-    <bean id="hibernateSessionFactory"
-          class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+    <bean id="entityManagerFactoryBean" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
         <property name="dataSource" ref="dataSource"/>
         <property name="packagesToScan">
             <list>
                 <value>shafin.web.entity</value>
             </list>
         </property>
-        <property name="hibernateProperties">
+        <property name="jpaVendorAdapter">
+            <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"/>
+        </property>
+        <property name="jpaProperties">
             <props>
                 <prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto}</prop>
                 <prop key="hibernate.dialect">${hibernate.dialect}</prop>
@@ -46,12 +48,12 @@
     </bean>
 
     <!-- TransactionManager Bean, we are using HibernateTransactionManager -->
-    <bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
-        <property name="sessionFactory" ref="hibernateSessionFactory"/>
+    <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+        <property name="entityManagerFactory" ref="entityManagerFactoryBean"/>
     </bean>
 
     <!-- Enable Annotation based Declarative Transaction Management -->
-    <tx:annotation-driven transaction-manager="transactionManager"/>
+    <tx:annotation-driven/>
 
     <!-- Enable Hibernate Specific Exceptions to be translated in Spring Exceptions -->
     <bean id="exceptionTranslator"

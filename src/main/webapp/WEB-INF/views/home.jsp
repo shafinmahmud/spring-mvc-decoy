@@ -10,9 +10,13 @@
 <body>
 <h1>Hello Spring MVC</h1>
 <H2>List of Users: </H2>
-<c:forEach var="user" items="${requestScope.userList}">
-    <c:out value="${user.name}"/>
-    <c:out value="${user.address}"/>
+<c:forEach var="post" items="${postList}">
+    <c:out value="${post.id}"/>
+    <c:out value="${post.title}"/>
+    <c:forEach var="comment" items="${post.comments}">
+        <c:out value="${comment.id}"/>
+        <c:out value="${comment.review}"/>
+    </c:forEach>
 </c:forEach>
 </body>
 </html>
