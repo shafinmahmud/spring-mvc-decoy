@@ -1,7 +1,7 @@
 apply plugin: 'java'
 apply plugin: 'war'
 
-group = 'shafin.web'
+group = 'net.shafin.temp'
 version = '1.0-SNAPSHOT'
 
 sourceCompatibility = 1.8
@@ -19,7 +19,7 @@ task release(type: Copy) {
 }
 
 repositories {
-    maven { url "http://repo.maven.apache.org/maven2" }
+    maven { url 'http://repo.maven.apache.org/maven2' }
 }
 
 dependencies {
@@ -32,6 +32,12 @@ dependencies {
     compile group: 'org.springframework', name: 'spring-orm', version: '4.3.4.RELEASE'
     compile group: 'org.springframework', name: 'spring-tx', version: '4.3.4.RELEASE'
 
+    testCompile(group: 'org.springframework', name: 'spring-test', version: '4.3.4.RELEASE') {
+        exclude(module: 'junit')
+    }
+    testCompile group: 'org.testng', name: 'testng', version: '6.14.2'
+    testCompile group: 'org.mockito', name: 'mockito-all', version: '1.10.19'
+
     compile group: 'org.hibernate', name: 'hibernate-core', version: '4.3.11.Final'
     compile group: 'org.hibernate', name: 'hibernate-entitymanager', version: '4.3.11.Final'
     compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.3'
@@ -43,4 +49,9 @@ dependencies {
     compile group: 'org.mindrot', name: 'jbcrypt', version: '0.3m'
     compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.21'
     runtime group: 'ch.qos.logback', name: 'logback-classic', version: '1.1.7'
+}
+
+test {
+    // enable TestNG support (default is JUnit)
+    useTestNG()
 }
