@@ -1,7 +1,7 @@
-package net.shafin.decoy.dao;
+package net.shafin.decoy.service;
 
-import org.springframework.stereotype.Repository;
 import net.shafin.decoy.entity.Post;
+import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -10,10 +10,10 @@ import java.util.List;
 
 /**
  * @author shafin
- * @since 9/9/17
+ * @since 2/18/18
  */
 @Repository
-public class PostDao {
+public class PostService {
 
     @PersistenceContext
     private EntityManager em;

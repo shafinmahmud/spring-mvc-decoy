@@ -15,7 +15,6 @@ import java.util.List;
 @Controller
 public class UserController {
 
-
     @GetMapping("/")
     public String getHome(ModelMap model) {
         List<Post> postList = new ArrayList<>();

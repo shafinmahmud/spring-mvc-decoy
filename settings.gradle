@@ -1,8 +1,7 @@
-rootProject.name = 'master'
+rootProject.name = 'rootstock'
+include ':site', ':api', ':core', ':domain'
 
-include ':main', ':api', ':domain', ':core-service'
-
-project(':main').projectDir = "$rootDir/main" as File
+project(':site').projectDir = "$rootDir/site" as File
 project(':api').projectDir = "$rootDir/api" as File
+project(':core').projectDir = "$rootDir/core" as File
 project(':domain').projectDir = "$rootDir/domain" as File
-project(':core-service').projectDir = "$rootDir/core-service" as File

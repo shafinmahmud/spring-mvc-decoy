@@ -1,0 +1,37 @@
+description = 'Application web interface'
+
+apply plugin: 'war'
+
+/* Copying war file to outer release directory */
+task release(type: Copy) {
+    from war.archivePath
+    into 'release/' + version
+    include '*.war'
+}
+
+dependencies {
+    providedCompile project(':domain')
+    providedCompile project(':core')
+
+    compile group: 'javax.servlet', name: 'javax.servlet-api', version: '3.1.0'
+    compile group: 'jstl', name: 'jstl', version: '1.2'
+
+    compile group: 'org.springframework', name: 'spring-webmvc', version: '4.3.14.RELEASE'
+    compile group: 'org.springframework', name: 'spring-core', version: '4.3.14.RELEASE'
+
+    testCompile(group: 'org.springframework', name: 'spring-test', version: '4.3.14.RELEASE') {
+        exclude(module: 'junit')
+    }
+    testCompile group: 'org.testng', name: 'testng', version: '6.14.2'
+    testCompile group: 'org.mockito', name: 'mockito-all', version: '1.10.19'
+
+    compile group: 'jaxen', name: 'jaxen', version: '1.1.6'
+    compile group: 'org.mindrot', name: 'jbcrypt', version: '0.3m'
+    compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.21'
+    runtime group: 'ch.qos.logback', name: 'logback-classic', version: '1.1.7'
+}
+
+test {
+    // enable TestNG support (default is JUnit)
+    useTestNG()
+}

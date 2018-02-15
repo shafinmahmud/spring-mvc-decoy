@@ -12,7 +12,7 @@
 
 
     <context:property-placeholder location="classpath:mysql.properties"/>
-    <context:component-scan base-package="net.shafin.decoy.dao"/>
+    <context:component-scan base-package="net.shafin.decoy.entity"/>
 
     <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
           destroy-method="close">

@@ -1,0 +1,5 @@
+description = 'Application Core Service'
+
+dependencies {
+    compile project(':domain')
+}
