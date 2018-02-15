@@ -1,0 +1,42 @@
+apply plugin: 'war'
+
+/* Copying war file to outer release directory */
+task release(type: Copy) {
+    from war.archivePath
+    into 'release/' + version
+    include '*.war'
+}
+
+dependencies {
+    compile group: 'javax.servlet', name: 'javax.servlet-api', version: '3.1.0'
+    compile group: 'jstl', name: 'jstl', version: '1.2'
+    compile group: 'org.springframework', name: 'spring-webmvc', version: '4.3.4.RELEASE'
+
+    compile group: 'org.springframework', name: 'spring-core', version: '4.3.4.RELEASE'
+    compile group: 'org.springframework', name: 'spring-context', version: '4.3.4.RELEASE'
+    compile group: 'org.springframework', name: 'spring-orm', version: '4.3.4.RELEASE'
+    compile group: 'org.springframework', name: 'spring-tx', version: '4.3.4.RELEASE'
+
+    testCompile(group: 'org.springframework', name: 'spring-test', version: '4.3.4.RELEASE') {
+        exclude(module: 'junit')
+    }
+    testCompile group: 'org.testng', name: 'testng', version: '6.14.2'
+    testCompile group: 'org.mockito', name: 'mockito-all', version: '1.10.19'
+
+    compile group: 'org.hibernate', name: 'hibernate-core', version: '4.3.11.Final'
+    compile group: 'org.hibernate', name: 'hibernate-entitymanager', version: '4.3.11.Final'
+    compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.3'
+    compile group: 'com.mchange', name: 'c3p0', version: '0.9.5.2'
+
+    compile group: 'javax.validation', name: 'validation-api', version: '1.1.0.Final'
+    compile group: 'jaxen', name: 'jaxen', version: '1.1.6'
+
+    compile group: 'org.mindrot', name: 'jbcrypt', version: '0.3m'
+    compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.21'
+    runtime group: 'ch.qos.logback', name: 'logback-classic', version: '1.1.7'
+}
+
+test {
+    // enable TestNG support (default is JUnit)
+    useTestNG()
+}

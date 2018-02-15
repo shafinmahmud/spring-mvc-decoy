@@ -1,0 +1,8 @@
+rootProject.name = 'master'
+
+include ':main', ':api', ':domain', ':core-service'
+
+project(':main').projectDir = "$rootDir/main" as File
+project(':api').projectDir = "$rootDir/api" as File
+project(':domain').projectDir = "$rootDir/domain" as File
+project(':core-service').projectDir = "$rootDir/core-service" as File
